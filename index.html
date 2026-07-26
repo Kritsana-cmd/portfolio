@@ -228,19 +228,23 @@
   .cert-strip::-webkit-scrollbar{height:6px;}
   .cert-strip::-webkit-scrollbar-thumb{background:var(--line); border-radius:6px;}
   .cert-card{
-    flex:0 0 240px; scroll-snap-align:start;
+    flex:0 0 260px; scroll-snap-align:start;
     background:
       radial-gradient(140% 120% at 0% 0%, rgba(255,180,0,.1), transparent 55%),
       radial-gradient(120% 100% at 100% 100%, rgba(139,92,246,.12), transparent 55%),
       rgba(11,15,26,.9);
-    border:1px dashed rgba(255,180,0,.3); border-radius:16px; padding:20px;
-    display:flex; flex-direction:column; justify-content:space-between; min-height:130px;
+    border:1px dashed rgba(255,180,0,.3); border-radius:16px; overflow:hidden;
+    display:flex; flex-direction:column;
     transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
   .cert-card:hover{transform:translateY(-4px); border-color:rgba(255,180,0,.65); box-shadow:0 16px 32px -14px rgba(255,180,0,.35);}
+  .cert-thumb{width:100%; height:150px; background:#080b13; border-bottom:1px dashed rgba(255,180,0,.25); overflow:hidden;}
+  .cert-thumb img{width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .3s ease;}
+  .cert-card:hover .cert-thumb img{transform:scale(1.05);}
+  .cert-body{padding:16px 18px 18px; display:flex; flex-direction:column; justify-content:space-between; flex:1;}
   .cert-card .no{font-family:var(--mono); font-size:11px; color:var(--amber-dim);}
   .cert-card h4{font-family:var(--tech); font-weight:700; font-size:14px; color:var(--text-dim); margin-top:10px;}
-  .cert-card .date{font-family:var(--mono); font-size:10.5px; color:var(--text-dim); opacity:.7;}
+  .cert-card .date{font-family:var(--mono); font-size:10.5px; color:var(--text-dim); opacity:.7; margin-top:8px; display:block;}
 
   /* ===== PROJECTS masonry-ish bento ===== */
   .t-proj{border-radius:var(--r); position:relative; overflow:hidden; transition:background .2s;}
@@ -383,10 +387,22 @@
   <section id="certs">
     <div class="kicker" style="margin-bottom:14px;">certifications · 4 added so far</div>
     <div class="cert-strip">
-      <div class="cert-card"><span class="no">01</span><h4>Cybersecurity Foundation Course</h4><span class="date">NCSA e-Learning · 21 ชม. · 16 พ.ย. 2568</span></div>
-      <div class="cert-card"><span class="no">02</span><h4>AI Governance &amp; Ethics</h4><span class="date">TDGA / DGA · 2 ชม. · 7 ธ.ค. 2568</span></div>
-      <div class="cert-card"><span class="no">03</span><h4>BU Mini CTF Competition 2026</h4><span class="date">School of IT and Innovation, BU · 10 ก.พ. 2569</span></div>
-      <div class="cert-card"><span class="no">04</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
+      <div class="cert-card">
+        <div class="cert-thumb"><img src="cert-01-cyber-foundation.jpg" alt="Cybersecurity Foundation Course certificate" loading="lazy"></div>
+        <div class="cert-body"><span class="no">01</span><h4>Cybersecurity Foundation Course</h4><span class="date">NCSA e-Learning · 21 ชม. · 16 พ.ย. 2568</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-thumb"><img src="cert-02-ai-governance.jpg" alt="AI Governance & Ethics certificate" loading="lazy"></div>
+        <div class="cert-body"><span class="no">02</span><h4>AI Governance &amp; Ethics</h4><span class="date">TDGA / DGA · 2 ชม. · 7 ธ.ค. 2568</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-thumb"><img src="cert-03-bu-ctf.jpg" alt="BU Mini CTF Competition 2026 certificate" loading="lazy"></div>
+        <div class="cert-body"><span class="no">03</span><h4>BU Mini CTF Competition 2026</h4><span class="date">School of IT and Innovation, BU · 10 ก.พ. 2569</span></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-thumb"><img src="cert-04-pentest.jpg" alt="Penetration Test Specialist certificate" loading="lazy"></div>
+        <div class="cert-body"><span class="no">04</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
+      </div>
     </div>
   </section>
 
