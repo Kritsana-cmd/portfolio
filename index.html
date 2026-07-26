@@ -173,11 +173,11 @@
   .btn.ghost{background:rgba(255,255,255,.03); border:1px solid var(--line); color:var(--text);}
   .btn.ghost:hover{border-color:var(--cyan); color:var(--cyan);}
 
-  .t-photo{grid-column:span 4; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start;}
+  .t-photo{grid-column:span 4; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:22px;}
   .t-photo .ring{
-    width:104px; height:104px; border-radius:50%; border:2px dashed rgba(77,168,255,.35);
+    width:min(180px, 70%); aspect-ratio:1/1; border-radius:50%; border:2px dashed rgba(77,168,255,.35);
     display:flex; align-items:center; justify-content:center;
-    position:relative; padding:6px;
+    position:relative; padding:8px; flex:0 0 auto;
   }
   .t-photo .ring img{
     width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;
@@ -189,7 +189,7 @@
     animation:spin 3.5s linear infinite;
   }
   @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-  .t-photo .status{font-family:var(--mono); font-size:11px; color:var(--cyan); display:flex; align-items:center; gap:8px; margin-top:18px;}
+  .t-photo .status{font-family:var(--mono); font-size:11px; color:var(--cyan); display:flex; align-items:center; gap:8px;}
   .t-photo .status .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);animation:pulse 1.8s infinite;}
 
   .t-stat{grid-column:span 3;}
@@ -228,7 +228,7 @@
   .cert-strip::-webkit-scrollbar{height:6px;}
   .cert-strip::-webkit-scrollbar-thumb{background:var(--line); border-radius:6px;}
   .cert-card{
-    flex:0 0 260px; scroll-snap-align:start;
+    flex:0 0 260px; scroll-snap-align:start; cursor:pointer;
     background:
       radial-gradient(140% 120% at 0% 0%, rgba(255,180,0,.1), transparent 55%),
       radial-gradient(120% 100% at 100% 100%, rgba(139,92,246,.12), transparent 55%),
@@ -237,14 +237,45 @@
     display:flex; flex-direction:column;
     transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .cert-card:hover{transform:translateY(-4px); border-color:rgba(255,180,0,.65); box-shadow:0 16px 32px -14px rgba(255,180,0,.35);}
-  .cert-thumb{width:100%; height:150px; background:#080b13; border-bottom:1px dashed rgba(255,180,0,.25); overflow:hidden;}
+  .cert-card:hover, .cert-card:focus-visible{transform:translateY(-4px); border-color:rgba(255,180,0,.65); box-shadow:0 16px 32px -14px rgba(255,180,0,.35); outline:none;}
+  .cert-thumb{width:100%; height:150px; background:#080b13; border-bottom:1px dashed rgba(255,180,0,.25); overflow:hidden; position:relative;}
   .cert-thumb img{width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .3s ease;}
   .cert-card:hover .cert-thumb img{transform:scale(1.05);}
+  .cert-thumb::after{
+    content:"⤢ ดูเต็ม"; position:absolute; right:8px; bottom:8px; z-index:2;
+    font-family:var(--mono); font-size:10px; color:var(--text); background:rgba(5,7,15,.75);
+    border:1px solid rgba(255,255,255,.15); padding:4px 8px; border-radius:6px;
+    opacity:0; transform:translateY(4px); transition:opacity .2s ease, transform .2s ease;
+  }
+  .cert-card:hover .cert-thumb::after{opacity:1; transform:translateY(0);}
   .cert-body{padding:16px 18px 18px; display:flex; flex-direction:column; justify-content:space-between; flex:1;}
   .cert-card .no{font-family:var(--mono); font-size:11px; color:var(--amber-dim);}
   .cert-card h4{font-family:var(--tech); font-weight:700; font-size:14px; color:var(--text-dim); margin-top:10px;}
   .cert-card .date{font-family:var(--mono); font-size:10.5px; color:var(--text-dim); opacity:.7; margin-top:8px; display:block;}
+
+  /* ===== certificate lightbox ===== */
+  .lightbox{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:24px;}
+  .lightbox.open{display:flex;}
+  .lightbox-backdrop{position:absolute; inset:0; background:rgba(3,4,9,.85); backdrop-filter:blur(4px);}
+  .lightbox-panel{
+    position:relative; z-index:1; max-width:920px; width:100%; max-height:88vh; overflow:auto;
+    background:var(--tile-hi); border:1px solid rgba(77,168,255,.3); border-radius:18px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+    display:flex; flex-direction:column;
+  }
+  .lightbox-close{
+    position:absolute; top:14px; right:14px; z-index:2;
+    width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.2);
+    background:rgba(5,7,15,.7); color:var(--text); font-size:16px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:border-color .2s, color .2s;
+  }
+  .lightbox-close:hover{border-color:var(--cyan); color:var(--cyan);}
+  .lightbox-img{width:100%; background:#080b13;}
+  .lightbox-img img{width:100%; height:auto; display:block;}
+  .lightbox-info{padding:22px 26px 26px;}
+  .lightbox-info h3{font-family:var(--tech); font-weight:700; font-size:22px;}
+  .lightbox-meta{font-family:var(--mono); font-size:12px; color:var(--cyan); margin-top:8px;}
+  .lightbox-desc{color:var(--text-dim); font-size:14px; margin-top:12px; line-height:1.7;}
 
   /* ===== PROJECTS masonry-ish bento ===== */
   .t-proj{border-radius:var(--r); position:relative; overflow:hidden; transition:background .2s;}
@@ -385,25 +416,51 @@
   </section>
 
   <section id="certs">
-    <div class="kicker" style="margin-bottom:14px;">certifications · 4 added so far</div>
+    <div class="kicker" style="margin-bottom:14px;">certifications · 4 added so far · คลิกที่การ์ดเพื่อดูเต็ม ๆ</div>
     <div class="cert-strip">
-      <div class="cert-card">
+      <div class="cert-card" tabindex="0" role="button"
+        data-img="cert-01-full.jpg" data-title="Cybersecurity Foundation Course"
+        data-meta="NCSA e-Learning · 21 ชั่วโมง · ให้ไว้ ณ วันที่ 16 พฤศจิกายน 2568"
+        data-desc="หลักสูตรด้านความมั่นคงปลอดภัยไซเบอร์ ระดับพื้นฐาน จัดโดยสำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ ผ่านระบบ NCSA e-Learning">
         <div class="cert-thumb"><img src="cert-01-cyber-foundation.jpg" alt="Cybersecurity Foundation Course certificate" loading="lazy"></div>
         <div class="cert-body"><span class="no">01</span><h4>Cybersecurity Foundation Course</h4><span class="date">NCSA e-Learning · 21 ชม. · 16 พ.ย. 2568</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" tabindex="0" role="button"
+        data-img="cert-02-full.jpg" data-title="AI Governance &amp; Ethics"
+        data-meta="TDGA / DGA · 2 ชั่วโมง · ให้ ณ วันที่ 7 ธันวาคม 2568"
+        data-desc="หลักการจริยธรรม ธรรมาภิบาล และข้อกฎหมายในการประยุกต์ใช้ AI จัดโดยสถาบันพัฒนาบุคลากรภาครัฐด้านดิจิทัล ภายใต้สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)">
         <div class="cert-thumb"><img src="cert-02-ai-governance.jpg" alt="AI Governance & Ethics certificate" loading="lazy"></div>
         <div class="cert-body"><span class="no">02</span><h4>AI Governance &amp; Ethics</h4><span class="date">TDGA / DGA · 2 ชม. · 7 ธ.ค. 2568</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" tabindex="0" role="button"
+        data-img="cert-03-full.jpg" data-title="BU Mini CTF Competition 2026"
+        data-meta="School of Information Technology and Innovation, Bangkok University · 10 กุมภาพันธ์ 2569"
+        data-desc="Certificate of Achievement จากการเข้าร่วมการแข่งขัน BU Mini CTF Competition 2026 จัดโดยคณะเทคโนโลยีสารสนเทศและนวัตกรรม มหาวิทยาลัยกรุงเทพ">
         <div class="cert-thumb"><img src="cert-03-bu-ctf.jpg" alt="BU Mini CTF Competition 2026 certificate" loading="lazy"></div>
         <div class="cert-body"><span class="no">03</span><h4>BU Mini CTF Competition 2026</h4><span class="date">School of IT and Innovation, BU · 10 ก.พ. 2569</span></div>
       </div>
-      <div class="cert-card">
+      <div class="cert-card" tabindex="0" role="button"
+        data-img="cert-04-full.jpg" data-title="Penetration Test Specialist"
+        data-meta="NCSA e-Learning · 28 ชั่วโมง · ให้ไว้ ณ วันที่ 26 เมษายน 2569"
+        data-desc="หลักสูตรผู้เชี่ยวชาญเฉพาะด้านการทดสอบเจาะระบบ (Penetration Test) จัดโดยสำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ ผ่านระบบ NCSA e-Learning">
         <div class="cert-thumb"><img src="cert-04-pentest.jpg" alt="Penetration Test Specialist certificate" loading="lazy"></div>
         <div class="cert-body"><span class="no">04</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
       </div>
     </div>
+
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-backdrop"></div>
+      <div class="lightbox-panel">
+        <button class="lightbox-close" id="lightboxClose" aria-label="close">✕</button>
+        <div class="lightbox-img"><img id="lightboxImg" src="" alt=""></div>
+        <div class="lightbox-info">
+          <h3 id="lightboxTitle"></h3>
+          <p class="lightbox-meta" id="lightboxMeta"></p>
+          <p class="lightbox-desc" id="lightboxDesc"></p>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <section id="projects">
@@ -592,6 +649,43 @@
     });
   }, {threshold:.4});
   counters.forEach(c=>counterObserver.observe(c));
+
+  // ---- certificate lightbox ----
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxMeta = document.getElementById('lightboxMeta');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  let lastFocused = null;
+
+  function openLightbox(card){
+    lightboxImg.src = card.dataset.img;
+    lightboxImg.alt = card.dataset.title || '';
+    lightboxTitle.textContent = card.dataset.title || '';
+    lightboxMeta.textContent = card.dataset.meta || '';
+    lightboxDesc.textContent = card.dataset.desc || '';
+    lastFocused = document.activeElement;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lightboxClose').focus();
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    if(lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.cert-card').forEach(card=>{
+    card.addEventListener('click', ()=> openLightbox(card));
+    card.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLightbox(card); }
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
 </script>
 
 </body>
