@@ -175,9 +175,13 @@
 
   .t-photo{grid-column:span 4; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start;}
   .t-photo .ring{
-    width:64px; height:64px; border-radius:50%; border:2px dashed rgba(77,168,255,.35);
-    display:flex; align-items:center; justify-content:center; font-family:var(--tech); font-weight:700; color:var(--amber); font-size:20px;
-    position:relative;
+    width:104px; height:104px; border-radius:50%; border:2px dashed rgba(77,168,255,.35);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; padding:6px;
+  }
+  .t-photo .ring img{
+    width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;
+    filter:saturate(1.05) contrast(1.03);
   }
   .t-photo .ring::before{
     content:""; position:absolute; inset:-3px; border-radius:50%;
@@ -247,10 +251,6 @@
   .t-proj .desc{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:10px; opacity:.75;}
   .t-proj .arrow{position:absolute; right:22px; bottom:20px; font-family:var(--mono); font-size:20px; color:var(--amber-dim); transition:transform .25s, color .25s;}
   .t-proj:hover .arrow{transform:translate(4px,-4px); color:var(--cyan);}
-  .p1{grid-column:span 7; min-height:190px;}
-  .p2{grid-column:span 5; min-height:190px;}
-  .p3{grid-column:span 5; min-height:170px;}
-  .p4{grid-column:span 7; min-height:170px;}
 
   /* ===== CONTACT ===== */
   .t-contact{grid-column:span 12; padding:44px 40px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;}
@@ -270,7 +270,7 @@
     .dock{max-width:92vw; overflow-x:auto;}
     .dock a{padding:9px 12px; font-size:12px;}
     main{padding:90px 16px 20px;}
-    .t-name, .t-photo, .t-stat, .t-about, .t-facts, .t-skill, .p1,.p2,.p3,.p4{grid-column:span 12;}
+    .t-name, .t-photo, .t-stat, .t-about, .t-facts, .t-skill{grid-column:span 12;}
     .t-contact{padding:30px 22px; flex-direction:column; align-items:flex-start;}
     .watermark{font-size:60px;}
   }
@@ -309,13 +309,13 @@
         </div>
       </div>
       <div class="tile t-photo">
-        <div class="ring">KL</div>
+        <div class="ring"><img src="profile.jpg" alt="Kritsana Ladtaen"></div>
         <div>
           <div class="status"><span class="dot"></span>available for opportunities</div>
         </div>
       </div>
-      <div class="tile t-stat"><div class="n">0</div><div class="l">Certificates</div></div>
-      <div class="tile t-stat"><div class="n">4</div><div class="l">Projects</div></div>
+      <div class="tile t-stat"><div class="n">4</div><div class="l">Certificates</div></div>
+      <div class="tile t-stat"><div class="n">1</div><div class="l">Projects</div></div>
       <div class="tile t-stat"><div class="n">0</div><div class="l">CTF Events</div></div>
       <div class="tile t-stat"><div class="n">3.18</div><div class="l">GPA</div></div>
     </div>
@@ -381,22 +381,19 @@
   </section>
 
   <section id="certs">
-    <div class="kicker" style="margin-bottom:14px;">certifications · 0 added so far</div>
+    <div class="kicker" style="margin-bottom:14px;">certifications · 4 added so far</div>
     <div class="cert-strip">
-      <div class="cert-card"><span class="no">01</span><h4>placeholder — ชื่อใบรับรอง</h4><span class="date">MM / YYYY</span></div>
-      <div class="cert-card"><span class="no">02</span><h4>placeholder — ชื่อใบรับรอง</h4><span class="date">MM / YYYY</span></div>
-      <div class="cert-card"><span class="no">03</span><h4>placeholder — ชื่อใบรับรอง</h4><span class="date">MM / YYYY</span></div>
-      <div class="cert-card"><span class="no">04</span><h4>placeholder — ชื่อใบรับรอง</h4><span class="date">MM / YYYY</span></div>
+      <div class="cert-card"><span class="no">01</span><h4>Cybersecurity Foundation Course</h4><span class="date">NCSA e-Learning · 21 ชม. · 16 พ.ย. 2568</span></div>
+      <div class="cert-card"><span class="no">02</span><h4>AI Governance &amp; Ethics</h4><span class="date">TDGA / DGA · 2 ชม. · 7 ธ.ค. 2568</span></div>
+      <div class="cert-card"><span class="no">03</span><h4>BU Mini CTF Competition 2026</h4><span class="date">School of IT and Innovation, BU · 10 ก.พ. 2569</span></div>
+      <div class="cert-card"><span class="no">04</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
     </div>
   </section>
 
   <section id="projects">
-    <div class="kicker" style="margin-bottom:14px;">projects · เลือกมา 4 ชิ้นเด่น ๆ</div>
+    <div class="kicker" style="margin-bottom:14px;">projects · ผลงานเด่น</div>
     <div class="grid">
-      <div class="tile hi t-proj p1"><a href="https://github.com/fewxskill152-cmd/edr-xdr-dashboard" target="_blank" rel="noopener" style="color:inherit; display:flex; flex-direction:column; height:100%; justify-content:space-between;"><div><div class="tag">Security Monitoring</div><h4>EDR/XDR Security Dashboard</h4><div class="desc">Wazuh 4.9.2 + Kafka (KRaft) + Flask/SocketIO real-time dashboard · custom MITRE ATT&CK-mapped detection rules · โปรเจกต์ร่วมกับ Siam.AI Cloud</div></div><span class="arrow">↗</span></a></div>
-      <div class="tile t-proj p2"><div class="tag">Penetration Testing</div><h4>OffSec Proving Grounds Report</h4><div class="desc">รายงานเจาะระบบ 5 เป้าหมาย (Seppuku, ColddBox Easy, CyberSploit1, Monitoring, Gaara) พร้อม 15 findings อ้างอิง CVE/CWE</div><span class="arrow">↗</span></div>
-      <div class="tile t-proj p3"><div class="tag">Automation</div><h4>Cookie Run: Classic Reroll Bot</h4><div class="desc">Python + OpenCV + ADB ควบคุม MuMu Player 6 instance พร้อมกัน ตรวจจับ UI ด้วย image template matching</div><span class="arrow">↗</span></div>
-      <div class="tile hi t-proj p4"><div class="tag">Penetration Testing</div><h4>Nagios XI Pentest (CVE-2019-15949)</h4><div class="desc">รายงานเจาะระบบ Nagios XI Server ฉบับภาษาไทย พร้อมภาพประกอบขั้นตอนการโจมตี</div><span class="arrow">↗</span></div>
+      <div class="tile hi t-proj" style="grid-column:span 12; min-height:220px;"><a href="https://github.com/fewxskill152-cmd/edr-xdr-dashboard" target="_blank" rel="noopener" style="color:inherit; display:flex; flex-direction:column; height:100%; justify-content:space-between;"><div><div class="tag">Security Monitoring</div><h4 style="font-size:24px;">EDR/XDR Security Dashboard</h4><div class="desc" style="max-width:640px;">Wazuh 4.9.2 + Kafka (KRaft) + Flask/SocketIO real-time dashboard · custom MITRE ATT&CK-mapped detection rules · โปรเจกต์ร่วมกับ Siam.AI Cloud</div></div><span class="arrow">↗</span></a></div>
     </div>
   </section>
 
