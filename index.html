@@ -98,42 +98,49 @@
   .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px;}
   .tile{
     background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 9px),
-      rgba(13,18,32,.82);
-    border:1px solid var(--line); border-radius:var(--r);
+      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0px, rgba(255,255,255,.02) 1px, transparent 1px, transparent 9px),
+      radial-gradient(140% 100% at 0% 0%, rgba(77,168,255,.12), transparent 55%),
+      radial-gradient(120% 90% at 100% 100%, rgba(139,92,246,.14), transparent 55%),
+      rgba(11,15,26,.9);
+    border:1px solid rgba(77,168,255,.16); border-radius:var(--r);
     padding:26px; position:relative; overflow:hidden;
     transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
-  /* HUD corner brackets */
+  /* HUD corner brackets — diagonal cyan/amber pairing for a cleaner, less busy look */
   .tile::before{
-    content:""; position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.65;
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
     background-image:
-      linear-gradient(var(--amber-dim),var(--amber-dim)), linear-gradient(var(--amber-dim),var(--amber-dim)),
-      linear-gradient(var(--amber-dim),var(--amber-dim)), linear-gradient(var(--amber-dim),var(--amber-dim)),
-      linear-gradient(var(--amber-dim),var(--amber-dim)), linear-gradient(var(--amber-dim),var(--amber-dim)),
-      linear-gradient(var(--amber-dim),var(--amber-dim)), linear-gradient(var(--amber-dim),var(--amber-dim));
+      linear-gradient(var(--cyan),var(--cyan)), linear-gradient(var(--cyan),var(--cyan)),
+      linear-gradient(var(--amber),var(--amber)), linear-gradient(var(--amber),var(--amber)),
+      linear-gradient(var(--amber),var(--amber)), linear-gradient(var(--amber),var(--amber)),
+      linear-gradient(var(--cyan),var(--cyan)), linear-gradient(var(--cyan),var(--cyan));
     background-repeat:no-repeat;
-    background-size:16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px;
+    background-size:18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px;
     background-position:
       14px 14px, 14px 14px,
-      calc(100% - 30px) 14px, calc(100% - 16px) 14px,
-      14px calc(100% - 16px), 14px calc(100% - 30px),
-      calc(100% - 30px) calc(100% - 16px), calc(100% - 16px) calc(100% - 30px);
-    transition:opacity .25s ease, background-color .25s ease;
+      calc(100% - 32px) 14px, calc(100% - 16px) 14px,
+      14px calc(100% - 16px), 14px calc(100% - 32px),
+      calc(100% - 32px) calc(100% - 16px), calc(100% - 16px) calc(100% - 32px);
+    opacity:.6;
+    transition:opacity .25s ease;
   }
   .tile:hover::before{opacity:1;}
   .tile.hi{background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0px, rgba(255,255,255,.02) 1px, transparent 1px, transparent 9px),
-      rgba(18,26,46,.85);
+      repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 9px),
+      radial-gradient(140% 100% at 0% 0%, rgba(77,168,255,.2), transparent 55%),
+      radial-gradient(120% 90% at 100% 100%, rgba(139,92,246,.22), transparent 55%),
+      rgba(15,20,36,.92);
+    border-color:rgba(139,92,246,.28);
   }
   /* scan sweep on the top edge */
   .tile::after{
     content:""; position:absolute; top:0; left:0; right:0; height:2px; z-index:1;
     background:linear-gradient(90deg, var(--amber), var(--teal), var(--cyan));
-    transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+    opacity:.5;
+    transform:scaleX(.14); transform-origin:left; transition:transform .35s ease, opacity .35s ease;
   }
-  .tile:hover{transform:translateY(-4px); border-color:rgba(77,168,255,.4); box-shadow:0 18px 38px -14px rgba(77,168,255,.4), 0 0 0 1px rgba(77,168,255,.08) inset;}
-  .tile:hover::after{transform:scaleX(1);}
+  .tile:hover{transform:translateY(-4px); border-color:rgba(53,224,208,.55); box-shadow:0 20px 42px -14px rgba(77,168,255,.45), 0 0 0 1px rgba(77,168,255,.12) inset;}
+  .tile:hover::after{transform:scaleX(1); opacity:1;}
   .kicker{font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--teal);}
   .watermark{
     position:absolute; right:14px; bottom:-6px; font-family:var(--tech); font-weight:700;
@@ -218,11 +225,15 @@
   .cert-strip::-webkit-scrollbar-thumb{background:var(--line); border-radius:6px;}
   .cert-card{
     flex:0 0 240px; scroll-snap-align:start;
-    background:var(--tile); border:1px dashed var(--line); border-radius:16px; padding:20px;
+    background:
+      radial-gradient(140% 120% at 0% 0%, rgba(255,180,0,.1), transparent 55%),
+      radial-gradient(120% 100% at 100% 100%, rgba(139,92,246,.12), transparent 55%),
+      rgba(11,15,26,.9);
+    border:1px dashed rgba(255,180,0,.3); border-radius:16px; padding:20px;
     display:flex; flex-direction:column; justify-content:space-between; min-height:130px;
     transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .cert-card:hover{transform:translateY(-4px); border-color:rgba(255,180,0,.5); box-shadow:0 14px 28px -14px rgba(77,168,255,.4);}
+  .cert-card:hover{transform:translateY(-4px); border-color:rgba(255,180,0,.65); box-shadow:0 16px 32px -14px rgba(255,180,0,.35);}
   .cert-card .no{font-family:var(--mono); font-size:11px; color:var(--amber-dim);}
   .cert-card h4{font-family:var(--tech); font-weight:700; font-size:14px; color:var(--text-dim); margin-top:10px;}
   .cert-card .date{font-family:var(--mono); font-size:10.5px; color:var(--text-dim); opacity:.7;}
@@ -304,7 +315,7 @@
         </div>
       </div>
       <div class="tile t-stat"><div class="n">0</div><div class="l">Certificates</div></div>
-      <div class="tile t-stat"><div class="n">0</div><div class="l">Projects</div></div>
+      <div class="tile t-stat"><div class="n">4</div><div class="l">Projects</div></div>
       <div class="tile t-stat"><div class="n">0</div><div class="l">CTF Events</div></div>
       <div class="tile t-stat"><div class="n">3.18</div><div class="l">GPA</div></div>
     </div>
@@ -314,8 +325,8 @@
     <div class="grid">
       <div class="tile t-about">
         <div class="kicker">about</div>
-        <p><span class="accent">[ ใส่คำอธิบายตัวเองแบบสั้น ]</span> เล่าว่าความสนใจด้าน Cybersecurity และ Data Science เริ่มมาจากไหน ทำแล็บหรือโปรเจกต์อะไรมาบ้าง</p>
-        <p>ตัวอย่างแนวทาง: พูดถึงโปรเจกต์เด่นอย่างระบบ EDR/XDR, บอทอัตโนมัติ หรือรายงาน Pentest แล้วโยงว่าทำไมถึงสนใจ และอยากพัฒนาไปทางไหนต่อ</p>
+        <p>เริ่มสนใจ Cybersecurity และ Data Science จากการลงมือทำจริง — ตั้งแต่แล็บ CTF สไตล์ VulnHub (crack zip, restricted shell escape, privilege escalation) ไปจนถึงการทดสอบเจาะระบบบน OffSec Proving Grounds กว่า 5 เป้าหมาย พบและอ้างอิง CVE/CWE รวม 15 รายการ</p>
+        <p>โปรเจกต์ที่ภูมิใจที่สุดคือระบบ <span class="accent">EDR/XDR Security Monitoring</span> ซึ่งเป็นความร่วมมือระหว่าง Siam.AI Cloud กับมหาวิทยาลัยกรุงเทพ วาง Wazuh + Kafka (KRaft mode) พร้อม dashboard แบบ real-time ด้วย Flask + SocketIO และเขียน detection rule ที่แม็ปกับ MITRE ATT&CK เอง 4 เทคนิค นอกจากงานสาย security แล้วยังชอบเขียนเครื่องมืออัตโนมัติด้วย Python เพื่อแก้ปัญหาที่เจอในชีวิตจริง</p>
         <div class="watermark">ABOUT</div>
       </div>
       <div class="tile t-facts">
@@ -348,7 +359,7 @@
       <div class="tile t-skill">
         <div class="kicker">03</div>
         <h3>Data Science</h3>
-        <p>[ ใส่รายละเอียดเพิ่มเติม ]</p>
+        <p>วิเคราะห์และประมวลผลข้อมูลด้วย Python เช่น log/threat data จากระบบ security monitoring</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">Data Analysis</span></div>
       </div>
       <div class="tile t-skill">
@@ -380,12 +391,12 @@
   </section>
 
   <section id="projects">
-    <div class="kicker" style="margin-bottom:14px;">projects — รอใส่ผลงานจริง เช่น EDR/XDR Dashboard, Reroll Bot, Pentest Reports</div>
+    <div class="kicker" style="margin-bottom:14px;">projects · เลือกมา 4 ชิ้นเด่น ๆ</div>
     <div class="grid">
-      <div class="tile hi t-proj p1"><div class="tag">placeholder</div><h4>ชื่อโปรเจกต์</h4><div class="desc">คำอธิบายสั้น ๆ + tech stack + ลิงก์ GitHub</div><span class="arrow">↗</span></div>
-      <div class="tile t-proj p2"><div class="tag">placeholder</div><h4>ชื่อโปรเจกต์</h4><div class="desc">คำอธิบายสั้น ๆ + tech stack</div><span class="arrow">↗</span></div>
-      <div class="tile t-proj p3"><div class="tag">placeholder</div><h4>ชื่อโปรเจกต์</h4><div class="desc">คำอธิบายสั้น ๆ + tech stack</div><span class="arrow">↗</span></div>
-      <div class="tile hi t-proj p4"><div class="tag">placeholder</div><h4>ชื่อโปรเจกต์</h4><div class="desc">คำอธิบายสั้น ๆ + tech stack + ลิงก์ GitHub</div><span class="arrow">↗</span></div>
+      <div class="tile hi t-proj p1"><a href="https://github.com/fewxskill152-cmd/edr-xdr-dashboard" target="_blank" rel="noopener" style="color:inherit; display:flex; flex-direction:column; height:100%; justify-content:space-between;"><div><div class="tag">Security Monitoring</div><h4>EDR/XDR Security Dashboard</h4><div class="desc">Wazuh 4.9.2 + Kafka (KRaft) + Flask/SocketIO real-time dashboard · custom MITRE ATT&CK-mapped detection rules · โปรเจกต์ร่วมกับ Siam.AI Cloud</div></div><span class="arrow">↗</span></a></div>
+      <div class="tile t-proj p2"><div class="tag">Penetration Testing</div><h4>OffSec Proving Grounds Report</h4><div class="desc">รายงานเจาะระบบ 5 เป้าหมาย (Seppuku, ColddBox Easy, CyberSploit1, Monitoring, Gaara) พร้อม 15 findings อ้างอิง CVE/CWE</div><span class="arrow">↗</span></div>
+      <div class="tile t-proj p3"><div class="tag">Automation</div><h4>Cookie Run: Classic Reroll Bot</h4><div class="desc">Python + OpenCV + ADB ควบคุม MuMu Player 6 instance พร้อมกัน ตรวจจับ UI ด้วย image template matching</div><span class="arrow">↗</span></div>
+      <div class="tile hi t-proj p4"><div class="tag">Penetration Testing</div><h4>Nagios XI Pentest (CVE-2019-15949)</h4><div class="desc">รายงานเจาะระบบ Nagios XI Server ฉบับภาษาไทย พร้อมภาพประกอบขั้นตอนการโจมตี</div><span class="arrow">↗</span></div>
     </div>
   </section>
 
