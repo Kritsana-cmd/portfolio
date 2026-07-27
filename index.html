@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kritsana Ladtaen — Data & Security Portfolio</title>
+<title>Kritsana Ladtaen · Data Science &amp; Cybersecurity</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta name="description" content="Kritsana Ladtaen — นักศึกษา Data Science &amp; Cybersecurity มหาวิทยาลัยกรุงเทพ พอร์ตโฟลิโอผลงานด้าน Security Monitoring, Penetration Testing และ Automation">
+<meta name="theme-color" content="#05070f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -158,6 +163,16 @@
     font-size:clamp(38px,5.4vw,68px); line-height:1.02; margin-top:14px;
   }
   .t-name h1 .hl{color:var(--amber);}
+  .t-name h1 .ltr{
+    display:inline-block;
+    animation:letterFloat 3s ease-in-out infinite;
+    transition:color .2s, text-shadow .2s;
+  }
+  .t-name h1 .ltr:hover{color:var(--cyan); text-shadow:0 0 16px rgba(53,224,208,.6);}
+  @keyframes letterFloat{
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-7px); }
+  }
   .t-name p{color:var(--text-dim); margin-top:16px; max-width:560px; font-size:15px;}
   .t-name .cta{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
 
@@ -197,6 +212,16 @@
   .t-stat:hover .n{text-shadow:0 0 26px rgba(77,168,255,.7);}
   .t-stat .l{font-family:var(--mono); font-size:10.5px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-top:6px;}
 
+  .now-bar{
+    margin-top:14px; padding:14px 22px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12.5px;
+  }
+  .now-bar::before{content:none;}
+  .now-dot{width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:pulse 1.8s infinite; flex-shrink:0;}
+  .now-label{color:var(--cyan); text-transform:uppercase; letter-spacing:1px; font-weight:600;}
+  .now-sep{color:var(--text-dim); opacity:.4;}
+  .now-text{color:var(--text-dim);}
+
   /* ===== ABOUT bento ===== */
   .t-about{grid-column:span 7;}
   .t-about p{color:var(--text-dim); margin-top:14px; font-size:14.5px;}
@@ -222,6 +247,19 @@
   .chip{font-family:var(--mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:5px 10px; border-radius:8px; background:rgba(255,255,255,.02); transition:border-color .2s, color .2s;}
   .t-skill:hover .chip{border-color:rgba(53,224,208,.35); color:var(--cyan);}
   .t-skill:hover{box-shadow:0 18px 38px -14px rgba(77,168,255,.4), inset 3px 0 0 0 var(--cyan);}
+
+  .stack-bar{margin-top:14px;}
+  .stack-badges{display:flex; flex-wrap:wrap; gap:10px;}
+  .stack-badges .badge{
+    font-family:var(--mono); font-size:12px; color:var(--text);
+    border:1px solid color-mix(in srgb, var(--c) 45%, var(--line));
+    background:color-mix(in srgb, var(--c) 10%, transparent);
+    padding:8px 14px; border-radius:999px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .stack-badges .badge::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--c); box-shadow:0 0 6px var(--c);}
+  .stack-badges .badge:hover{transform:translateY(-3px); box-shadow:0 10px 20px -8px var(--c);}
 
   /* ===== CERTS horizontal strip ===== */
   .cert-strip{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; margin:0 -4px;}
@@ -287,6 +325,24 @@
   .t-proj .arrow{position:absolute; right:22px; bottom:20px; font-family:var(--mono); font-size:20px; color:var(--amber-dim); transition:transform .25s, color .25s;}
   .t-proj:hover .arrow{transform:translate(4px,-4px); color:var(--cyan);}
 
+  /* ===== expanded project case study ===== */
+  .proj-head{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; margin-bottom:24px;}
+  .proj-head .tag{font-family:var(--mono); font-size:11px; color:var(--teal); text-transform:uppercase; letter-spacing:1px;}
+  .proj-head h4{font-family:var(--tech); font-weight:700; font-size:26px; margin-top:10px; color:var(--text);}
+  .proj-head .desc{font-family:var(--sans); font-size:14px; color:var(--text-dim); margin-top:12px; max-width:640px; line-height:1.75;}
+  .repo-link{
+    font-family:var(--mono); font-size:12.5px; font-weight:700; color:#04060c;
+    background:linear-gradient(135deg,var(--amber),var(--teal)); padding:11px 20px; border-radius:10px;
+    white-space:nowrap; flex-shrink:0; transition:filter .2s ease, transform .2s ease;
+    box-shadow:0 8px 20px -8px rgba(77,168,255,.5);
+  }
+  .repo-link:hover{filter:brightness(1.1); transform:translateY(-2px);}
+  .proj-specs{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .spec{background:rgba(11,15,26,.65); padding:14px 20px; transition:background .2s ease;}
+  .spec:hover{background:rgba(77,168,255,.07);}
+  .spec .k{display:block; font-family:var(--mono); font-size:10.5px; color:var(--amber-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;}
+  .spec .v{font-family:var(--mono); font-size:12.5px; color:var(--text-dim); line-height:1.65;}
+
   /* ===== CONTACT ===== */
   .t-contact{grid-column:span 12; padding:44px 40px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;}
   .t-contact h2{font-family:var(--tech); font-weight:700; font-size:clamp(26px,4vw,38px); max-width:520px; line-height:1.1;}
@@ -309,6 +365,8 @@
     .t-stat{grid-column:span 6;}
     .t-contact{padding:30px 22px; flex-direction:column; align-items:flex-start;}
     .watermark{font-size:60px;}
+    .proj-specs{grid-template-columns:1fr;}
+    .proj-head{flex-direction:column;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -355,13 +413,20 @@
       <div class="tile t-stat"><div class="n">1</div><div class="l">CTF Events</div></div>
       <div class="tile t-stat"><div class="n">3.18</div><div class="l">GPA</div></div>
     </div>
+
+    <div class="tile now-bar">
+      <span class="now-dot"></span>
+      <span class="now-label">กำลังเรียนรู้ตอนนี้</span>
+      <span class="now-sep">/</span>
+      <span class="now-text">เจาะลึก Threat Hunting และ Cloud Security ต่อยอดจากโปรเจกต์ EDR/XDR พร้อมเตรียมพอร์ตสำหรับสหกิจศึกษาสาย Cybersecurity</span>
+    </div>
   </section>
 
   <section id="about">
     <div class="grid">
       <div class="tile t-about">
         <div class="kicker">about</div>
-        <p>เริ่มสนใจ Cybersecurity และ Data Science จากการลงมือทำจริง — ตั้งแต่แล็บ CTF สไตล์ VulnHub (crack zip, restricted shell escape, privilege escalation) ไปจนถึงการทดสอบเจาะระบบบน OffSec Proving Grounds กว่า 5 เป้าหมาย พบและอ้างอิง CVE/CWE รวม 15 รายการ</p>
+        <p>เริ่มสนใจ Cybersecurity และ Data Science จากการลงมือทำจริง — ตั้งแต่แล็บ CTF สไตล์ VulnHub (crack zip, restricted shell escape, privilege escalation) ไปจนถึงการทดสอบเจาะระบบจริงบนแพลตฟอร์ม OffSec Proving Grounds หลายเป้าหมาย และเขียนรายงานอ้างอิง CVE/CWE อย่างเป็นระบบ</p>
         <p>โปรเจกต์ที่ภูมิใจที่สุดคือระบบ <span class="accent">EDR/XDR Security Monitoring</span> ซึ่งเป็นความร่วมมือระหว่าง Siam.AI Cloud กับมหาวิทยาลัยกรุงเทพ วาง Wazuh + Kafka (KRaft mode) พร้อม dashboard แบบ real-time ด้วย Flask + SocketIO และเขียน detection rule ที่แม็ปกับ MITRE ATT&CK เอง 4 เทคนิค นอกจากงานสาย security แล้วยังชอบเขียนเครื่องมืออัตโนมัติด้วย Python เพื่อแก้ปัญหาที่เจอในชีวิตจริง</p>
         <div class="watermark">ABOUT</div>
       </div>
@@ -410,8 +475,21 @@
         <p>Linux Administration</p>
         <div class="chips"><span class="chip">Ubuntu</span><span class="chip">Netplan</span><span class="chip">Flask/SocketIO</span></div>
       </div>
-      <div class="tile t-skill" style="display:flex; align-items:center; justify-content:center;">
-        <span class="kicker" style="font-size:12px;">+ more coming soon</span>
+    </div>
+
+    <div class="tile stack-bar">
+      <div class="kicker" style="margin-bottom:14px;">tech stack</div>
+      <div class="stack-badges">
+        <span class="badge" style="--c:var(--amber);">Python</span>
+        <span class="badge" style="--c:var(--cyan);">Wazuh</span>
+        <span class="badge" style="--c:var(--teal);">Kafka</span>
+        <span class="badge" style="--c:var(--amber);">Flask / SocketIO</span>
+        <span class="badge" style="--c:var(--cyan);">OpenCV</span>
+        <span class="badge" style="--c:var(--teal);">ADB</span>
+        <span class="badge" style="--c:var(--amber);">Ubuntu / Linux</span>
+        <span class="badge" style="--c:var(--cyan);">Netplan</span>
+        <span class="badge" style="--c:var(--teal);">MITRE ATT&amp;CK</span>
+        <span class="badge" style="--c:var(--amber);">Git / GitHub</span>
       </div>
     </div>
   </section>
@@ -467,7 +545,24 @@
   <section id="projects">
     <div class="kicker" style="margin-bottom:14px;">projects · ผลงานเด่น</div>
     <div class="grid">
-      <div class="tile hi t-proj" style="grid-column:span 12; min-height:220px;"><a href="https://github.com/fewxskill152-cmd/edr-xdr-dashboard" target="_blank" rel="noopener" style="color:inherit; display:flex; flex-direction:column; height:100%; justify-content:space-between;"><div><div class="tag">Security Monitoring</div><h4 style="font-size:24px;">EDR/XDR Security Dashboard</h4><div class="desc" style="max-width:640px;">Wazuh 4.9.2 + Kafka (KRaft) + Flask/SocketIO real-time dashboard · custom MITRE ATT&CK-mapped detection rules · โปรเจกต์ร่วมกับ Siam.AI Cloud</div></div><span class="arrow">↗</span></a></div>
+      <div class="tile hi t-proj-case" style="grid-column:span 12;">
+        <div class="proj-head">
+          <div>
+            <div class="tag">Security Monitoring · Flagship Project</div>
+            <h4>EDR/XDR Security Dashboard</h4>
+            <div class="desc">ระบบเฝ้าระวังความปลอดภัยแบบ real-time ที่รวบรวม log จากหลายแหล่ง วิเคราะห์และแจ้งเตือนภัยคุกคามผ่าน dashboard ของตัวเอง พัฒนาร่วมกับ Siam.AI Cloud ตั้งแต่วางสถาปัตยกรรมระบบ ไปจนถึงเขียน detection rule เอง</div>
+          </div>
+          <a class="repo-link" href="https://github.com/fewxskill152-cmd/edr-xdr-dashboard" target="_blank" rel="noopener">ดู repository ↗</a>
+        </div>
+        <div class="proj-specs">
+          <div class="spec"><span class="k">Infrastructure</span><span class="v">Ubuntu Server × 2 (192.168.1.8 / .9) · จัด static IP ผ่าน Netplan</span></div>
+          <div class="spec"><span class="k">SIEM</span><span class="v">Wazuh 4.9.2</span></div>
+          <div class="spec"><span class="k">Message Broker</span><span class="v">Apache Kafka 3.9.2 (KRaft mode) · SASL/PLAIN authentication</span></div>
+          <div class="spec"><span class="k">Dashboard</span><span class="v">Flask + Socket.IO แบบ real-time</span></div>
+          <div class="spec"><span class="k">Detection Rules</span><span class="v">4 custom rules อิง MITRE ATT&amp;CK — brute force, group membership change, encoded PowerShell, new user creation</span></div>
+          <div class="spec"><span class="k">Collaboration</span><span class="v">Siam.AI Cloud</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -650,6 +745,31 @@
     });
   }, {threshold:.4});
   counters.forEach(c=>counterObserver.observe(c));
+
+  // ---- animated hero name: split into letters, each floats with a staggered delay ----
+  (function animateHeroName(){
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced) return;
+    const heading = document.querySelector('.t-name h1');
+    if(!heading) return;
+    const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT, null);
+    const textNodes = [];
+    let node;
+    while(node = walker.nextNode()) textNodes.push(node);
+    let i = 0;
+    textNodes.forEach(tn=>{
+      const frag = document.createDocumentFragment();
+      [...tn.textContent].forEach(ch=>{
+        const span = document.createElement('span');
+        span.className = 'ltr';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        span.style.animationDelay = (i * 0.06) + 's';
+        i++;
+        frag.appendChild(span);
+      });
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  })();
 
   // ---- certificate lightbox ----
   const lightbox = document.getElementById('lightbox');
