@@ -338,10 +338,35 @@
   }
   .repo-link:hover{filter:brightness(1.1); transform:translateY(-2px);}
   .proj-specs{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .roadmap{
+    margin-top:14px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    padding:14px 20px; border:1px dashed rgba(255,180,0,.4); border-radius:12px;
+    background:rgba(255,180,0,.05);
+  }
+  .roadmap-badge{
+    font-family:var(--mono); font-size:11px; letter-spacing:.5px; color:var(--amber);
+    border:1px solid rgba(255,180,0,.4); padding:5px 10px; border-radius:8px; flex-shrink:0;
+  }
+  .roadmap-text{font-family:var(--sans); font-size:13.5px; color:var(--text-dim); line-height:1.6;}
+  .roadmap-text b{color:var(--text); font-weight:600;}
   .spec{background:rgba(11,15,26,.65); padding:14px 20px; transition:background .2s ease;}
   .spec:hover{background:rgba(77,168,255,.07);}
   .spec .k{display:block; font-family:var(--mono); font-size:10.5px; color:var(--amber-dim); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;}
   .spec .v{font-family:var(--mono); font-size:12.5px; color:var(--text-dim); line-height:1.65;}
+
+  /* ===== activities / experience ===== */
+  .activity-card{grid-column:span 12; cursor:pointer; padding:0; overflow:hidden;}
+  .activity-row{display:flex; align-items:center; gap:22px; padding:22px 26px;}
+  .activity-thumb{flex:0 0 120px; width:120px; height:90px; border-radius:10px; overflow:hidden; background:#080b13;}
+  .activity-thumb img{width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform .3s ease;}
+  .activity-card:hover .activity-thumb img{transform:scale(1.06);}
+  .activity-body{flex:1; min-width:0;}
+  .activity-body .tag{font-family:var(--mono); font-size:10.5px; color:var(--teal); text-transform:uppercase; letter-spacing:1px;}
+  .activity-body h4{font-family:var(--tech); font-weight:700; font-size:18px; margin-top:8px; color:var(--text);}
+  .activity-body .desc{font-family:var(--sans); font-size:13px; color:var(--text-dim); margin-top:8px; line-height:1.6; max-width:640px;}
+  .activity-body .date{display:block; font-family:var(--mono); font-size:11px; color:var(--text-dim); opacity:.75; margin-top:10px;}
+  .activity-card .arrow{font-family:var(--mono); font-size:20px; color:var(--amber-dim); flex-shrink:0; transition:transform .25s, color .25s;}
+  .activity-card:hover .arrow{transform:translate(4px,-4px); color:var(--cyan);}
 
   /* ===== CONTACT ===== */
   .t-contact{grid-column:span 12; padding:44px 40px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;}
@@ -367,6 +392,9 @@
     .watermark{font-size:60px;}
     .proj-specs{grid-template-columns:1fr;}
     .proj-head{flex-direction:column;}
+    .activity-row{flex-direction:column; align-items:flex-start; gap:14px; padding:18px 20px;}
+    .activity-thumb{width:100%; height:150px;}
+    .activity-card .arrow{align-self:flex-end;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -385,6 +413,7 @@
   <a href="#about">about</a>
   <a href="#skills">skills</a>
   <a href="#certs">certs</a>
+  <a href="#activities">activities</a>
   <a href="#projects">work</a>
   <a class="hire" href="#contact">let's talk</a>
 </nav>
@@ -513,18 +542,18 @@
         <div class="cert-body"><span class="no">02</span><h4>AI Governance &amp; Ethics</h4><span class="date">TDGA / DGA · 2 ชม. · 7 ธ.ค. 2568</span></div>
       </div>
       <div class="cert-card" tabindex="0" role="button"
-        data-img="cert-03-full.jpg" data-title="BU Mini CTF Competition 2026"
-        data-meta="School of Information Technology and Innovation, Bangkok University · 10 กุมภาพันธ์ 2569"
-        data-desc="Certificate of Achievement จากการเข้าร่วมการแข่งขัน BU Mini CTF Competition 2026 จัดโดยคณะเทคโนโลยีสารสนเทศและนวัตกรรม มหาวิทยาลัยกรุงเทพ">
-        <div class="cert-thumb"><img src="cert-03-bu-ctf.jpg" alt="BU Mini CTF Competition 2026 certificate" loading="lazy"></div>
-        <div class="cert-body"><span class="no">03</span><h4>BU Mini CTF Competition 2026</h4><span class="date">School of IT and Innovation, BU · 10 ก.พ. 2569</span></div>
-      </div>
-      <div class="cert-card" tabindex="0" role="button"
         data-img="cert-04-full.jpg" data-title="Penetration Test Specialist"
         data-meta="NCSA e-Learning · 28 ชั่วโมง · ให้ไว้ ณ วันที่ 26 เมษายน 2569"
         data-desc="หลักสูตรผู้เชี่ยวชาญเฉพาะด้านการทดสอบเจาะระบบ (Penetration Test) จัดโดยสำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ ผ่านระบบ NCSA e-Learning">
         <div class="cert-thumb"><img src="cert-04-pentest.jpg" alt="Penetration Test Specialist certificate" loading="lazy"></div>
-        <div class="cert-body"><span class="no">04</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
+        <div class="cert-body"><span class="no">03</span><h4>Penetration Test Specialist</h4><span class="date">NCSA e-Learning · 28 ชม. · 26 เม.ย. 2569</span></div>
+      </div>
+      <div class="cert-card" tabindex="0" role="button"
+        data-img="cert-05-full.jpg" data-title="Basic Cybersecurity"
+        data-meta="MOOC Cybersecurity Learning Platform · NCSA Thailand · Issued 29/07/2026 · ID SPG-5GOPC2TV7RRI6"
+        data-desc="Certificate of Completion สำหรับหลักสูตร Basic Cybersecurity บนแพลตฟอร์ม MOOC ลงนามโดย AVM. Amorn Chomchoey, Secretary General, NCSA Thailand">
+        <div class="cert-thumb"><img src="cert-05-basic-cyber.jpg" alt="Basic Cybersecurity certificate" loading="lazy"></div>
+        <div class="cert-body"><span class="no">04</span><h4>Basic Cybersecurity</h4><span class="date">MOOC / NCSA Thailand · 29 ก.ค. 2569</span></div>
       </div>
     </div>
 
@@ -543,6 +572,27 @@
 
   </section>
 
+  <section id="activities">
+    <div class="kicker" style="margin-bottom:14px;">experience &amp; activities</div>
+    <div class="grid">
+      <div class="tile activity-card" tabindex="0" role="button"
+        data-img="cert-03-full.jpg" data-title="BU Mini CTF Competition 2026"
+        data-meta="School of Information Technology and Innovation, Bangkok University · 10 กุมภาพันธ์ 2569"
+        data-desc="เข้าร่วมการแข่งขัน BU Mini CTF Competition 2026 จัดโดยคณะเทคโนโลยีสารสนเทศและนวัตกรรม มหาวิทยาลัยกรุงเทพ ร่วมกับ NCSA, National Telecom และ G-Able">
+        <div class="activity-row">
+          <div class="activity-thumb"><img src="cert-03-bu-ctf.jpg" alt="BU Mini CTF Competition 2026" loading="lazy"></div>
+          <div class="activity-body">
+            <div class="tag">Competition</div>
+            <h4>BU Mini CTF Competition 2026</h4>
+            <p class="desc">เข้าร่วมการแข่งขัน Capture the Flag ที่จัดโดยคณะเทคโนโลยีสารสนเทศและนวัตกรรม มหาวิทยาลัยกรุงเทพ ร่วมกับ NCSA, National Telecom และ G-Able</p>
+            <span class="date">10 กุมภาพันธ์ 2569 · School of IT and Innovation, Bangkok University</span>
+          </div>
+          <span class="arrow">↗</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="projects">
     <div class="kicker" style="margin-bottom:14px;">projects · ผลงานเด่น</div>
     <div class="grid">
@@ -556,12 +606,16 @@
           <a class="repo-link" href="https://github.com/Kritsana-cmd/edr-xdr-dashboard" target="_blank" rel="noopener">ดู repository ↗</a>
         </div>
         <div class="proj-specs">
-          <div class="spec"><span class="k">Infrastructure</span><span class="v">Ubuntu Server × 2 (192.168.1.8 / .9) · จัด static IP ผ่าน Netplan</span></div>
+          <div class="spec"><span class="k">Infrastructure</span><span class="v">Ubuntu Server × 2 บน internal network · จัด static IP ผ่าน Netplan</span></div>
           <div class="spec"><span class="k">SIEM</span><span class="v">Wazuh 4.9.2</span></div>
           <div class="spec"><span class="k">Message Broker</span><span class="v">Apache Kafka 3.9.2 (KRaft mode) · SASL/PLAIN authentication</span></div>
           <div class="spec"><span class="k">Dashboard</span><span class="v">Flask + Socket.IO แบบ real-time</span></div>
           <div class="spec"><span class="k">Detection Rules</span><span class="v">4 custom rules อิง MITRE ATT&amp;CK — brute force, group membership change, encoded PowerShell, new user creation</span></div>
           <div class="spec"><span class="k">Collaboration</span><span class="v">Siam.AI Cloud</span></div>
+        </div>
+        <div class="roadmap">
+          <span class="roadmap-badge">🚧 กำลังจะมา</span>
+          <span class="roadmap-text">ต่อยอดระบบด้วย <b>NVIDIA Morpheus</b> สำหรับเร่งความเร็วการตรวจจับภัยคุกคามด้วย AI/GPU บน <b>GPU Cloud ของ Siam.AI Cloud</b></span>
         </div>
       </div>
     </div>
@@ -797,7 +851,7 @@
     if(lastFocused) lastFocused.focus();
   }
 
-  document.querySelectorAll('.cert-card').forEach(card=>{
+  document.querySelectorAll('.cert-card, .activity-card').forEach(card=>{
     card.addEventListener('click', ()=> openLightbox(card));
     card.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLightbox(card); }
